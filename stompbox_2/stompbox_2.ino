@@ -38,8 +38,8 @@ char osc_addrs_analog[num_analog_pins][16];
 char osc_addr_button[8] = "/button";
 
 // display vars
-int lcdColumns = 16;
-int lcdRows = 2;
+int lcdColumns = 20;
+int lcdRows = 4;
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 
 //VL53L0 var for distance sensor (functionality commented out below in 2 places)
@@ -174,7 +174,7 @@ void loop() {
   bundle.add(osc_addr_button).add(analogRead(button_pin));
 
   //read VL53L0
-  /* //Currently causing display problems
+  /*/Currently causing display problems
   VL53L0X_RangingMeasurementData_t measure;
   lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
   if (measure.RangeStatus != 4) {  // phase failures have incorrect data
@@ -183,6 +183,7 @@ void loop() {
     bundle.add("/VL53L0").add(-1);
   }
   */
+  
 
   // Send values to Max
   Udp.beginPacket(dest_ip, dest_port);
