@@ -42,7 +42,7 @@ int lcdColumns = 20;
 int lcdRows = 4;
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 
-//VL53L0 var for distance sensor (functionality commented out below in 2 places)
+//VL53L0 var for distance sensor 
 Adafruit_VL53L0X lox = Adafruit_VL53L0X();
 
 // networking vars
@@ -179,7 +179,6 @@ void loop() {
   bundle.add(osc_addr_button).add(analogRead(button_pin));
 
   //read VL53L0
-  //Currently causing display problems
   VL53L0X_RangingMeasurementData_t measure;
   lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
   if (measure.RangeStatus != 4) {  // phase failures have incorrect data
