@@ -43,7 +43,7 @@ int lcdRows = 4;
 LiquidCrystal_I2C lcd(0x27, lcdColumns, lcdRows);
 
 //VL53L0 var for distance sensor 
-Adafruit_VL53L0X lox = Adafruit_VL53L0X();
+//Adafruit_VL53L0X lox = Adafruit_VL53L0X();
 
 // networking vars
 WiFiUDP Udp;
@@ -58,15 +58,16 @@ boolean debug = false;
 void setup() {
   Serial.begin(115200);  
   
-  //currently causing display issues
+  /*/currently causing display issues
   Serial.println("Adafruit VL53L0X test");
   if (!lox.begin()) {
     Serial.println(F("Failed to boot VL53L0X"));
     while (1);
   }
+  */
 
   //the Adafruit_VL53L0X begin method can interfere with the LCD display unless we manually set the address
-  lox.setAddress(0x29);
+  //lox.setAddress(0x29);
   
 
   // initialize LCD
@@ -178,7 +179,7 @@ void loop() {
   // read button
   bundle.add(osc_addr_button).add(analogRead(button_pin));
 
-  //read VL53L0
+  /*/read VL53L0
   VL53L0X_RangingMeasurementData_t measure;
   lox.rangingTest(&measure, false); // pass in 'true' to get debug data printout!
   if (measure.RangeStatus != 4) {  // phase failures have incorrect data
@@ -186,6 +187,7 @@ void loop() {
   } else {
     bundle.add("/VL53L0").add(-1);
   }
+  */
   
   
 
